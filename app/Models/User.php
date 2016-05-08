@@ -3,14 +3,13 @@
 namespace CodeDelivery\Models;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Prettus\Repository\Contracts\Transformable;
+use Prettus\Repository\Traits\TransformableTrait;
 
-class User extends Authenticatable
+class User extends Authenticatable implements Transformable
 {
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
+    use TransformableTrait;
+
     protected $fillable = [
         'name', 'email', 'password',
     ];
@@ -28,4 +27,5 @@ class User extends Authenticatable
     {
         return $this->hasOne(Client::class);
     }
+
 }
